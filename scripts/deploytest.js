@@ -9,11 +9,12 @@ async function main() {
     );
     // Mathcoin phải đặt tên trùng với tên của hợp đồng ảo =))
     const Mathcoin = await hre.ethers.getContractFactory("Mathcoin");
+    const lockedAmount = hre.ethers.utils.parseEther("0.001");
     const contract = await Mathcoin.deploy("Mathcoin", "Math", 10000000000);
 
     await contract.deployed();
 
-    console.log("Contract deployed at:");
+    console.log("Contract deployed at:", contract.address);
 }
 
 main()
