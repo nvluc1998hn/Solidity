@@ -8,8 +8,8 @@ async function main() {
         deployer.address
     );
     // Mathcoin phải đặt tên trùng với tên của hợp đồng ảo =))
-    const Mathcoin = await hre.ethers.getContractFactory("Mathcoin");
-    const contract = await Mathcoin.deploy("Mathcoin", "Math", 10000000000);
+    const P$YCHOCOIN = await hre.ethers.getContractFactory("P$YCHOCOIN");
+    const contract = await P$YCHOCOIN.deploy("P$YCHOCOIN", "P$Y", 10000000000);
 
     await contract.deployed();
 

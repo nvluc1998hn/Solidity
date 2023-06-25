@@ -232,7 +232,7 @@ contract Mathcoin is ERC20, Ownable {
     address private constant _deadAddress =
         0x000000000000000000000000000000000000dEaD;
     IUniswapV2Router02 private uniswapV2Router =
-        IUniswapV2Router02(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
+        IUniswapV2Router02(0xC532a74256D3Db42D0Bf7a0400fEFDbad7694008);
 
     constructor(
         string memory name_,
@@ -250,6 +250,19 @@ contract Mathcoin is ERC20, Ownable {
         _totalSupply += amount;
         _balances[account] += amount;
         emit Transfer(address(0), account, amount);
+    }
+
+    function _burn(address account, uint256 Amount) internal virtual {
+        require(account != address(0), "ERC20: burn from the zero address");
+
+        uint256 accountBalance = _balances[account];
+        require(accountBalance >= Amount, "ERC20: burn Amount exceeds balance");
+        unchecked {
+            _balances[account] = accountBalance - Amount;
+        }
+        _totalSupply -= Amount;
+
+        emit Transfer(account, address(0), Amount);
     }
 
     function _transfer(
